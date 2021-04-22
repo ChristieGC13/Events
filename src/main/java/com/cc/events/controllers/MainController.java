@@ -154,6 +154,9 @@ public class MainController {
 			model.addAttribute("event", events);
 			return "editEvent.jsp";
 		} else {
+			Event oldEvent = eventServ.findEvent(id);
+			List<User> guests = oldEvent.getGuests();
+			event.setGuests(guests);
 			eventServ.updateEvent(event);
 			return "redirect:/events";
 		}
